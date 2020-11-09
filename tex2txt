@@ -1,0 +1,57 @@
+#!/bin/bash
+
+if [ -z $1 ]
+then
+  echo "No inut file given"
+  echo "USAGE: tex2txt file.tex"
+  exit 0
+fi
+
+sed 's/cref/ref/g' $1 \
+  | sed 's/eqref/ref/g' \
+  | sed 's/\\citeyear/2020 \\citeyear/g' \
+  | sed 's/\\citeauthor/some people \\citeauthor/g' \
+  | sed 's/\\textendash\\/-/g' \
+  | sed 's/in the \\ref/in the chapter \\ref/g' \
+  | sed 's/in \\ref/in the paragraph \\ref/3;P;D' \
+  | sed 's/in \\ref/in the section \\ref/2;P;D' \
+  | sed 's/in \\ref/in the chapter \\ref/g' \
+  | sed 's/to \\ref/to the chapter \\ref/g' \
+  | sed 's/from \\ref/from the chapter \\ref/g' \
+  | sed 's/see \\ref/see the chapter \\ref/g' \
+  | sed 's/in~\\ref/in the chapter \\ref/g' \
+  | sed 's/of~\\ref/of the chapter \\ref/g' \
+  | sed 's/In \\ref/In the next paragraph \\ref/g' \
+  | sed 's/In~\\ref/In the next paragraph \\ref/g' \
+  | sed 's/The \\ref/The reference \\ref/g' \
+  | sed 's/of \\ref/of the link \\ref/g' \
+  | sed 's/\. \\ref/\. The chapters \\ref/g' \
+  | sed 's/\, \\ref/\, the section \\ref/g' \
+  | sed 's/in~\\cite/in the reference~\\cite/4;P;D' \
+  | sed 's/in~\\cite/in the book~\\cite/3;P;D' \
+  | sed 's/in~\\cite/on the website~\\cite/2;P;D' \
+  | sed 's/in~\\cite/in the article~\\cite/g' \
+  | sed 's/In~\\cite/In the book~\\cite/g' \
+  | sed 's/from~\\cite/from the dataset~\\cite/g' \
+  | sed 's/following~\\cite/following the previous work~\\cite/g' \
+  | sed 's/by~\\cite/by the paper~\\cite/g' \
+  | sed 's/of~\\cite/of the link~\\cite/g' \
+  | sed 's/and~\\cite/and in the literature~\\cite/g' \
+  | sed 's/with~\\cite/with the reference~\\cite/g' \
+  | sed 's/to~\\cite/to the reference~\\cite/g' \
+  | sed 's/e.g.,~\\cite/e.g., the reference \\cite/g' \
+  | perl -p0e "s/(\\\\begin{equation})(.*?)(?:(\.)(.*?\\\\end{equation})|(\\\\end{equation}))/\1\2\3\4\5\3/gs" \
+  | perl -p0e "s/(\\\\begin{align})(.*?)(?:(\.)(.*?\\\\end{align})|(\\\\end{align}))/\1\2\3\4\5\3/gs" \
+  | sed 's/\\begin{equation}/the mathematical equation\\begin{equation}/g' \
+  | sed 's/\\begin{align}/the mathematical equation\\begin{align}/g' \
+  | detex -n -r -l -e "algorithm,align,array,bmatrix,displaymath,eqnarray,equation,floatfig,floating,longtable,picture,pmatrix,psfrags,pspicture,smallmatrix,smallpmatrix,tabular,table,tikzpicture,verbatim,vmatrix,wrapfigure,lstlisting"\
+  | sed 's/noun/X/g' \
+  | sed 's/  / /g' \
+  | sed 's/ \./\./g' \
+  | sed 's/ ,/,/g' \
+  | sed 's/ )/)/g' \
+  | sed 's/ :/:/g' \
+  | sed 's/^[ ]*//g' \
+  | sed 's/[[:space:]]the mathematical equation[[:space:]]/the mathematical equation/g' \
+  | sed -e 's/[[:space:]]*$//' \
+  | sed '/^$/N;/^\n$/D'
