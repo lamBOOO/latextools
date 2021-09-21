@@ -9,6 +9,9 @@ fi
 
 sed 's/cref/ref/g' $1 \
   | sed 's/eqref/ref/g' \
+  | sed 's/\\right\.//g' \
+  | sed 's/a\.e\.//g' \
+  | sed 's/subseq\.//g' \
   | sed 's/\\citeyear/2020 \\citeyear/g' \
   | sed 's/\\citeauthor/some people \\citeauthor/g' \
   | sed 's/\\textendash\\/-/g' \
