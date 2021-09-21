@@ -15,6 +15,7 @@ sed 's/cref/ref/g' $1 \
   | sed 's/\\citeyear/2020 \\citeyear/g' \
   | sed 's/\\citeauthor/some people \\citeauthor/g' \
   | sed 's/\\textendash\\/-/g' \
+  | sed 's/the \\ref/the chapter \\ref/g' \
   | sed 's/in the \\ref/in the chapter \\ref/g' \
   | sed 's/in \\ref/in the paragraph \\ref/3;P;D' \
   | sed 's/in \\ref/in the section \\ref/2;P;D' \
