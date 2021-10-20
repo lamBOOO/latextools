@@ -52,7 +52,7 @@ sed 's/cref/ref/g' $1 \
   | perl -p0e "s/(\\\\begin{align})(.*?)(?:(\.)(.*?\\\\end{align})|(\\\\end{align}))/\1\2\3\4\5\3/gs" \
   | sed 's/\\begin{equation}/the mathematical equation\\begin{equation}/g' \
   | sed 's/\\begin{align}/the mathematical equation\\begin{align}/g' \
-  | detex -n -r -l -e "algorithm,align,array,bmatrix,displaymath,eqnarray,equation,floatfig,floating,longtable,picture,pmatrix,psfrags,pspicture,smallmatrix,smallpmatrix,tabular,table,tikzpicture,verbatim,vmatrix,wrapfigure,lstlisting"\
+  | detex -n -r -l -e "algorithm,align,aligned,array,bmatrix,displaymath,eqnarray,equation,floatfig,floating,longtable,picture,pmatrix,psfrags,pspicture,smallmatrix,smallpmatrix,tabular,table,tikzpicture,verbatim,vmatrix,wrapfigure,lstlisting"\
   | sed 's/noun/X/g' \
   | sed 's/  / /g' \
   | sed 's/ \./\./g' \
