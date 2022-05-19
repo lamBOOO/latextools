@@ -11,6 +11,7 @@ sed 's/cref/ref/g' $1 \
   | sed 's/eqref/ref/g' \
   | sed 's/\\right\.//g' \
   | sed 's/a\.e\.//g' \
+  | sed 's/F\.-in\.//g' \
   | sed 's/subseq\.//g' \
   | sed 's/F\.-in\.//g' \
   | sed 's/\[Proof/\[proof/g' \
@@ -52,6 +53,7 @@ sed 's/cref/ref/g' $1 \
   | sed 's/with~\\cite/with the reference~\\cite/g' \
   | sed 's/to~\\cite/to the reference~\\cite/g' \
   | sed 's/e.g.,~\\cite/e.g., the reference \\cite/g' \
+  | sed 's/\[Proof/\[proof/g' \
   | perl -p0e "s/(\\\\begin{equation})(.*?)(?:(\.)(.*?\\\\end{equation})|(\\\\end{equation}))/\1\2\3\4\5\3/gs" \
   | perl -p0e "s/(\\\\begin{align})(.*?)(?:(\.)(.*?\\\\end{align})|(\\\\end{align}))/\1\2\3\4\5\3/gs" \
   | sed 's/\\begin{equation}/the mathematical equation\\begin{equation}/g' \
