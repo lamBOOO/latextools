@@ -18,6 +18,8 @@ sed 's/cref/ref/g' $1 \
   | sed 's/\\citeauthor/some people \\citeauthor/g' \
   | sed 's/\\textendash\\/-/g' \
   | sed 's/the \\ref/the chapter \\ref/g' \
+  | sed 's/with \\ref/with chapter \\ref/g' \
+  | sed 's/With \\ref/With section \\ref/g' \
   | sed 's/in the \\ref/in the chapter \\ref/g' \
   | sed 's/in \\ref/in the paragraph \\ref/3;P;D' \
   | sed 's/in \\ref/in the section \\ref/2;P;D' \
@@ -35,6 +37,7 @@ sed 's/cref/ref/g' $1 \
   | sed 's/of \\ref/of the link \\ref/g' \
   | sed 's/\. \\ref/\. The chapters \\ref/g' \
   | sed 's/\, \\ref/\, the section \\ref/g' \
+  | sed 's/for instance~\\cite/for instance the reference~\\cite/5;P;D' \
   | sed 's/in~\\cite/in the reference~\\cite/4;P;D' \
   | sed 's/in~\\cite/in the book~\\cite/3;P;D' \
   | sed 's/in~\\cite/on the website~\\cite/2;P;D' \
