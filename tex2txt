@@ -29,6 +29,7 @@ sed 's/cref/ref/g' $1 \
   | sed 's/from \\ref/from the chapter \\ref/g' \
   | sed 's/see \\ref/see the chapter \\ref/g' \
   | sed 's/by \\ref/by the expression \\ref/g' \
+  | sed 's/By \\ref/By the expression \\ref/g' \
   | sed 's/to \\ref/to the expression \\ref/g' \
   | sed 's/in~\\ref/in the chapter \\ref/g' \
   | sed 's/of~\\ref/of the chapter \\ref/g' \
