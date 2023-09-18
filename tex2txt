@@ -48,6 +48,7 @@ sed 's/cref/ref/g' $1 \
   | sed 's/From~\\cite/From the dataset~\\cite/g' \
   | sed 's/following~\\cite/following the previous work~\\cite/g' \
   | sed 's/by~\\cite/by the paper~\\cite/g' \
+  | sed 's/By~\\cite/By the paper~\\cite/g' \
   | sed 's/of~\\cite/of the link~\\cite/g' \
   | sed 's/and~\\cite/and in the literature~\\cite/g' \
   | sed 's/with~\\cite/with the reference~\\cite/g' \
