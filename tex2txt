@@ -9,6 +9,7 @@ fi
 
 sed 's/cref/ref/g' $1 \
   | sed 's/eqref/ref/g' \
+  | sed 's/labelref/ref/g' \
   | sed 's/\\right\.//g' \
   | sed 's/a\.e\.//g' \
   | sed 's/F\.-in\.//g' \
@@ -21,6 +22,8 @@ sed 's/cref/ref/g' $1 \
   | sed 's/the \\ref/the chapter \\ref/g' \
   | sed 's/with \\ref/with chapter \\ref/g' \
   | sed 's/With \\ref/With section \\ref/g' \
+  | sed 's/Assume \\ref/Assume the section \\ref/g' \
+  | sed 's/assume \\ref/assume the section \\ref/g' \
   | sed 's/in the \\ref/in the chapter \\ref/g' \
   | sed 's/in \\ref/in the paragraph \\ref/3;P;D' \
   | sed 's/in \\ref/in the section \\ref/2;P;D' \
@@ -47,6 +50,10 @@ sed 's/cref/ref/g' $1 \
   | sed 's/In~\\cite/In the book~\\cite/g' \
   | sed 's/from~\\cite/from the dataset~\\cite/g' \
   | sed 's/From~\\cite/From the dataset~\\cite/g' \
+  | sed 's/using~\\cite/using the dataset~\\cite/g' \
+  | sed 's/Using~\\cite/Using the dataset~\\cite/g' \
+  | sed 's/and~\\cite/and the dataset~\\cite/g' \
+  | sed 's/And~\\cite/And the dataset~\\cite/g' \
   | sed 's/following~\\cite/following the previous work~\\cite/g' \
   | sed 's/Following~\\cite/Following the previous work~\\cite/g' \
   | sed 's/by~\\cite/by the paper~\\cite/g' \
@@ -57,6 +64,8 @@ sed 's/cref/ref/g' $1 \
   | sed 's/to~\\cite/to the reference~\\cite/g' \
   | sed 's/e.g.,~\\cite/e.g., the reference \\cite/g' \
   | sed 's/\[Proof/\[proof/g' \
+  | perl -p0e "s/\\\\item/-/gs" \
+  | perl -p0e "s/\\\\label{(.*?)}//gs" \
   | perl -p0e "s/(\\\\begin{equation})(.*?)(?:(\.)(.*?\\\\end{equation})|(\\\\end{equation}))/\1\2\3\4\5\3/gs" \
   | perl -p0e "s/(\\\\begin{align})(.*?)(?:(\.)(.*?\\\\end{align})|(\\\\end{align}))/\1\2\3\4\5\3/gs" \
   | sed 's/\\begin{equation}/the mathematical equation\\begin{equation}/g' \
