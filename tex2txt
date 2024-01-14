@@ -18,7 +18,7 @@ sed 's/cref/ref/g' $1 \
   | sed 's/F\.-in\.//g' \
   | sed 's/\[Proof/\[proof/g' \
   | sed 's/\\citeyear/2020 \\citeyear/g' \
-  | sed 's/\\citeauthor/some people \\citeauthor/g' \
+  | sed 's/\\citeauthor/the person \\citeauthor/g' \
   | sed 's/\\textendash\\/-/g' \
   | sed 's/the \\ref/the chapter \\ref/g' \
   | sed 's/with \\ref/with chapter \\ref/g' \
@@ -38,8 +38,8 @@ sed 's/cref/ref/g' $1 \
   | sed 's/to \\ref/to the expression \\ref/g' \
   | sed 's/in~\\ref/in the chapter \\ref/g' \
   | sed 's/of~\\ref/of the chapter \\ref/g' \
-  | sed 's/In \\ref/In the next paragraph \\ref/g' \
-  | sed 's/In~\\ref/In the next paragraph \\ref/g' \
+  | sed 's/In \\ref/In the paragraph \\ref/g' \
+  | sed 's/In~\\ref/In the paragraph \\ref/g' \
   | sed 's/The \\ref/The reference \\ref/g' \
   | sed 's/of \\ref/of the link \\ref/g' \
   | sed 's/\. \\ref/\. The chapters \\ref/g' \
