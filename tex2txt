@@ -42,6 +42,8 @@ sed 's/cref/ref/g' $1 \
   | sed 's/In~\\ref/In the paragraph \\ref/g' \
   | sed 's/The \\ref/The reference \\ref/g' \
   | sed 's/of \\ref/of the link \\ref/g' \
+  | sed 's/and \\ref/and the link \\ref/g' \
+  | sed 's/that \\ref/that the equation \\ref/g' \
   | sed 's/\. \\ref/\. The chapters \\ref/g' \
   | sed 's/\, \\ref/\, the section \\ref/g' \
   | sed 's/for instance~\\cite/for instance the reference~\\cite/5;P;D' \
@@ -54,6 +56,7 @@ sed 's/cref/ref/g' $1 \
   | sed 's/see~\\cite/see the book~\\cite/2;P;D' \
   | sed 's/see~\\cite/see the article~\\cite/g' \
   | sed 's/c.f.~\\cite/c.f. the article~\\cite/g' \
+  | sed 's/cf.~\\cite/cf. the article~\\cite/g' \
   | sed 's/In~\\cite/In the book~\\cite/g' \
   | sed 's/from~\\cite/from the dataset~\\cite/g' \
   | sed 's/From~\\cite/From the dataset~\\cite/g' \
@@ -77,6 +80,12 @@ sed 's/cref/ref/g' $1 \
   | perl -p0e "s/(\\\\begin{align})(.*?)(?:(\.)(.*?\\\\end{align})|(\\\\end{align}))/\1\2\3\4\5\3/gs" \
   | sed 's/\\begin{equation}/the mathematical equation\\begin{equation}/g' \
   | sed 's/\\begin{align}/the mathematical equation\\begin{align}/g' \
+  | sed 's/\\begin{alignat}/the mathematical equation\\begin{align}/g' \
+  | sed 's/\\end{alignat}/\\end{align}/g' \
+  | sed 's/\\begin{subequations}/the mathematical equation\\begin{align}/g' \
+  | sed 's/\\end{subequations}/\\end{align}/g' \
+  | sed 's/\\begin{multline}/the mathematical equation\\begin{align}/g' \
+  | sed 's/\\end{multline}/\\end{align}/g' \
   | detex -n -r -l -e "algorithm,align,aligned,array,bmatrix,displaymath,eqnarray,equation,floatfig,floating,longtable,picture,pmatrix,psfrags,pspicture,smallmatrix,smallpmatrix,tabular,table,tikzpicture,verbatim,vmatrix,wrapfigure,lstlisting"\
   | sed 's/noun/X/g' \
   | sed 's/  / /g' \
